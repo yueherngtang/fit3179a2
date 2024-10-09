@@ -1,0 +1,61 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Expenditure Group Ranking and Percentage Over Time",
+    "width": 630,
+    "height": 500,
+    "background": "transparent",
+    "data": {
+      "url": "https://raw.githubusercontent.com/yueherngtang/fit3179w10hw/refs/heads/master/expenditure_group_percentage_expenditure.csv"
+    },
+    "layer": [
+      {
+        "mark": {"type": "line","interpolate": "monotone"},
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "quantitative",
+            "scale": {
+              "domain": [2010, 2022]  
+            },
+          "axis": null
+          },
+          "y": {
+            "field": "rank",
+            "type": "quantitative",
+            "sort": "descending",
+            "scale": {
+              "domain": [0, 13]  
+            },
+            "title": "Ranking",
+            "axis": {
+              "values": [1,2,3,4,5,6,7,8,9,10,11,12],  
+              "labelFontSize": 14,
+              "grid": false,
+              "domain": false 
+            }
+          },
+          "color": {"field": "expenditure_group", "type": "nominal",  "legend": {
+            "orient": "bottom",  
+            "columns": 3,        
+            "title": null,        
+            "labelFontSize": 12,  
+            "labelLimit": 250,    
+            "padding": 10             
+          }},
+          "order": {"field": "year", "type": "quantitative"},
+          "tooltip": [
+            {"field": "expenditure_group", "type": "nominal"},
+            {"field": "percentage_of_expenditure", "type": "quantitative"},
+            {"field": "rank", "type": "quantitative"}
+          ]
+        }
+      }
+    ],
+    "config": {
+      "view": {
+        "stroke": null 
+
+      }
+    }
+  }
+  

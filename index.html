@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-tooltip@0.25.0"></script>
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Import pure.css -->
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+
+    <script src="vega_lite_vis.js"></script>
+    <script src="donut_income_group.js"></script>
+    <script src="donut_race.js"></script>
+    <script src="sample.js"></script>
+
+    <style>
+        body *{
+        font-family: 'Open Sans', sans-serif;
+    }
+
+        /* Customize the font for the h1 */
+        h1 {
+            font-family: "Georgia", serif;
+            font-size: 49px;
+            font-weight: bold;
+            color: #000000;
+            text-align: center;
+        }
+
+        /* Customize the font for the h2 */
+        h2 {
+            font-family: "Tahoma", sans-serif;
+            font-size: 22px;
+            color: #000000;
+            text-align: center;
+        }
+
+        #vg-tooltip-element td:last-child {
+            font-weight: bold;
+        }
+
+        .vis-container {
+            width: 100%;
+        }
+
+        .dashboard-container {
+            width: 1366px; /* Set a fixed width for the dashboard */
+            padding: 40px; /* Optional padding inside the container */
+            margin: auto;
+            background-color: rgb(241, 241, 241); /* Optional: Add background color to the container */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for effect */
+        }
+
+        .separator {
+            width: 100%; /* Full width of the dashboard container */
+            background-color: #dd3711; /* Grey background color */
+            text-align: center; /* Center the text */
+            padding: 10px 0; /* Padding to give the bar height */
+            margin: 20px 0; /* Margin to add space around the bar */
+            box-sizing: border-box; /* Make sure padding is included in the width */
+        }
+
+        .separator span {
+            font-size: 18px;
+            font-weight: bold;
+            color: #efefef; /* Text color */
+        }
+
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            width: 200px;
+            height: auto;
+            padding: 5px;
+            font: 12px sans-serif;
+            background: rgb(255, 255, 255);
+            border: 0px;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .pure-g {
+            margin-bottom: 40px;
+        }
+
+        .description h2,
+  .description p {
+      text-align: justify; /* Justify the text */
+  }
+
+  .centered-text {
+      position: relative;
+      transform: translate(-50%, -50%);
+      font-size: 22px;
+      font-weight: bold;
+      color: black;
+    }
+
+    .chart-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      width: 400px;
+      height: 400px;
+      margin: auto;
+    }
+
+    .chart {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+
+    </style>
+
+    <title>Assignment 2</title>
+</head>
+
+<body>
+    <div class="dashboard-container">
+        <h1>Hard Times, Tough Choices</h1>
+        <h1 style = "font-size: 20px;">Economic Strain: The Impact on Malaysian Families and Spending</h1>
+        <br>
+    
+        <div class="separator">
+            <span>Poverty Rate & Income Group</span>
+        </div>
+
+            <div id="mappy">
+                <script>
+                    // Initial rendering with the default year (2022)
+                    window.onload = function() {
+                    renderDonutChart(2022);  // Render chart for the default year
+                    renderDonutChart_race(2022);
+                    renderMap(2022);
+                    };
+    
+                    // Listen for changes in the dropdown and re-render the chart
+                    document.getElementById('yearSelect').addEventListener('change', function() {
+                    const selectedYear = this.value;
+                    renderDonutChart(selectedYear);  // Re-render the chart based on the selected year
+                    renderDonutChart_race(selectedYear);
+                    renderMap(selectedYear);
+                    });
+                </script>
+            </div>
+
+            <div class="pure-g" > 
+                <div class="pure-u-1-3">
+                    <div class="chart-container" style =" top: 6%;">
+                        <div id="donut-chart"></div>
+                        <div class="centered-text" style =" top: 6%; left:-50%;">
+                            Income Group
+                        </div>
+                    </div>
+                        <!-- Script for calling the function when the page loads and on dropdown change -->
+                        <script>
+                            // Initial rendering with the default year (2022)
+                            window.onload = function() {
+                            renderDonutChart(2022);  // Render chart for the default year
+                            renderDonutChart_race(2022);
+                            renderMap(2022);
+                            };
+            
+                            // Listen for changes in the dropdown and re-render the chart
+                            document.getElementById('yearSelect').addEventListener('change', function() {
+                            const selectedYear = this.value;
+                            renderDonutChart(selectedYear);  // Re-render the chart based on the selected year
+                            renderDonutChart_race(selectedYear);
+                            renderMap(selectedYear);
+                            });
+                        </script>
+    
+    
+                </div>
+                <div class="pure-u-1-3">
+                    <label for="yearSelect">Select Year: </label>
+                    <select id="yearSelect">
+                        <option value="2022">2022</option>
+                        <option value="2019">2019</option>
+                        <option value="2016">2016</option>
+                    </select>
+                    <div id="alluvial" class="vis-container"></div>
+                    <div class="tooltip" id="tooltip"></div>
+                    <script src="sankey.js"></script>
+                </div>
+    
+                <div class="pure-u-1-3">
+                    <div class="chart-container" style =" top: 6%; left: 19%;">
+                        <div id="donut-chart-race"></div>
+                        <div class="centered-text" style =" top: 2%; left:-50%;">
+                            Ethnicity
+                        </div>
+                        
+                    </div>
+                </div>
+                
+    
+            </div>
+    
+            <script>
+                // Initial rendering with the default year (2022)
+                window.onload = function() {
+                renderDonutChart(2022);  // Render chart for the default year
+                renderDonutChart_race(2022);
+                renderMap(2022);
+                };
+    
+                // Listen for changes in the dropdown and re-render the chart
+                document.getElementById('yearSelect').addEventListener('change', function() {
+                const selectedYear = this.value;
+                renderDonutChart(selectedYear);  // Re-render the chart based on the selected year
+                renderDonutChart_race(selectedYear);
+                renderMap(selectedYear);
+                });
+            </script>
+    
+    
+
+            <div class="separator">
+                <span>Unemployment Rate</span>
+            </div>
+
+
+        
+        <br><br>
+
+        <div class="pure-g">
+            <div class="pure-u-2-3">
+                <div id="line_scrub" class="vis-container"></div>
+            </div>
+            <div class="pure-u-1-3">
+              <div class="description description-right">
+                <h2 style="font-size: 30.4px; margin-bottom: 5px;"><span style="font-family: inherit; font-weight: inherit;">Unemployment Spike In 2020</span></h2>
+                <h2 style="font-size: 21.5px;margin-top: 0;">Gradual Recovery Follows in Recent Years</h2>
+                <p style="color: #494949;">Malaysia's unemployment rate surged in 2020 due to the COVID-19 pandemic but has steadily declined as the economy recovered. Despite the initial disruption, the labor market has shown resilience, with recent years marking a return toward pre-pandemic stability.
+                    <br><br>
+                    <h2 style="font-size: 29.4px; margin-bottom: 5px;"><span style="font-family: inherit; font-weight: inherit;">East Malaysia Faces Job Strain</span></h2>
+                    <h2 style="font-size: 20.7px;margin-top: 0;">Sabah & Labuan Lag While Others Rebound</h2>
+                    Sabah and Labuan continue to face elevated unemployment rates, driven by limited economic diversification and reliance on industries vulnerable to global market shifts. <br><br> The disparity between these regions and more urbanized areas stems from slower infrastructure development and fewer economic opportunities. Addressing this requires targeted investments, policy reforms, and support for emerging sectors to boost job creation and close the employment gap.
+                    <br><br>
+                    Moreover, the regions' dependence on traditional industries such as oil and gas has limited the development of a more resilient and diversified economy. This dependence makes Sabah and Labuan particularly susceptible to external shocks, such as fluctuating commodity prices and global demand.
+              </div>
+            </div>
+      
+          </div>
+        
+<!-- 
+        <br><br><br><br>
+        <div class="pure-g">
+            <div class="pure-u-2-3">
+              <div id="bubble" class="vis-container"></div>
+            </div>
+            <div class="pure-u-1-3">
+              <div class="description description-right">
+                <h2 style="font-size: 29.4px; margin-bottom: 5px;"><span style="color: #377eb8; font-family: inherit; font-weight: inherit;">Sabah's </span>Socio-economic Strain</h2>
+                <h2 style="font-size: 20.5px;margin-top: 0;">Leading in Both Poverty and Unemployment</h2>
+                <br>
+                <p style="color: #494949;"><strong style="color: #377eb8;">Sabah</strong> struggles with both high poverty and unemployment due to limited economic opportunities, especially in rural areas, compounded by infrastructure challenges. This has created a cycle where job shortages lead to increased poverty and social strain.
+                    <br><br>
+                    In <strong style="color: #377eb8;">W.P. Labuan</strong>, high unemployment persists, but poverty is more controlled, likely due to federal support and smaller population size, which helps buffer the economic impact despite limited job prospects.
+                    <br><br>
+                    Malaysia's economic center is located in the <strong style="color: #984ea3;">Central</strong> Region, therefore <strong style="color: #984ea3;">Selangor</strong>, <strong style="color: #984ea3;">W.P. Putrajaya</strong> &  <strong style="color: #984ea3;">W.P. Kuala Lumpur</strong> benefits from more diverse job opportunities, resulting in low poverty and moderate unemployment, though urban living costs can still strain some households financially.</p>
+              </div>
+            </div>
+      
+          </div> -->
+
+
+          <div class="separator">
+            <span>Income & Expenditure</span>
+        </div>
+
+
+    
+    <br><br>
+    <div class="pure-g">
+        <div class="pure-u-2-3">
+          <div id="parallel" class="vis-container"></div>
+        </div>
+        <div class="pure-u-1-3">
+              <div class="description description-right">
+                <h2 style="font-size: 29.4px; margin-bottom: 5px;"><span style="color: #377eb8; font-family: inherit; font-weight: inherit;">Sabah's </span>Socio-economic Strain</h2>
+                <h2 style="font-size: 20.5px;margin-top: 0;">Leading in Both Poverty and Unemployment</h2>
+                <br>
+                <p style="color: #494949;"><strong style="color: #377eb8;">Sabah</strong> struggles with both high poverty and unemployment due to limited economic opportunities, especially in rural areas, compounded by infrastructure challenges. This has created a cycle where job shortages lead to increased poverty and social strain.
+                    <br><br>
+                    In <strong style="color: #377eb8;">W.P. Labuan</strong>, high unemployment persists, but poverty is more controlled, likely due to federal support and smaller population size, which helps buffer the economic impact despite limited job prospects.
+                    <br><br>
+                    Malaysia's economic center is located in the <strong style="color: #984ea3;">Central</strong> Region, therefore <strong style="color: #984ea3;">Selangor</strong>, <strong style="color: #984ea3;">W.P. Putrajaya</strong> &  <strong style="color: #984ea3;">W.P. Kuala Lumpur</strong> benefits from more diverse job opportunities, resulting in low poverty and moderate unemployment, though urban living costs can still strain some households financially.</p>
+              </div>
+            </div>
+        </div>
+  
+        
+        <div class="separator">
+            <span>Expenditure Group</span>
+        </div>
+
+
+        <div class="pure-g">
+            <div class="pure-u-2-3">
+                <div class="chart-container" style =" top: 6%; left: -27%;">
+                    <div id="bump" class="chart"></div>
+                    <div id="bar_expenditure" class="chart" style="position: absolute; left: 38px; top: 0;"></div>
+                  </div>
+            </div>
+        </div>
+            
+        <div class="description" style="position: relative; top: -433px; left: 890px; z-index: 3;  padding: 10px; border-radius: 8px; width: 454px; height: 700px; overflow: auto; word-wrap: break-word;">
+            <h2 style="font-size: 30.4px; margin-bottom: 5px;">
+                Rising Costs & Jobless Rates Reshape Household Spending
+            </h2>
+            <h2 style="font-size: 20.8px; margin-top: 0;">Expenditure Shifts to Health as Costs Climb</h2>
+            <br>
+            <p style="color: #494949;">
+                Over the past decade, household spending priorities in Malaysia have evolved significantly in response to economic pressures. Essential categories such as Food & Beverages, Housing & Utilities, and Dining & Accommodation have remained top spending priorities, underscoring their non-negotiable nature in family budgets. Even as these categories hold their dominance, rising living costs and income pressures have forced households to make difficult choices about how to allocate their limited resources.
+                <br><br>
+                One noticeable trend is the increasing importance of Health services, particularly in the most recent years. As job markets have become more uncertain, families have redirected more of their budgets toward healthcare - a sector that have become critical in the post-pandemic era. 
+                <br><br>
+                In contrast, spending on non-essential categories such as Apparel, Leisure & Culture, and Alcohol & Tobacco has seen a steady decline. This shift reflects changing consumer behavior, as households cut back on discretionary spending to focus more on essentials. 
+            
+            </p>
+        </div>
+       
+    </div>
+</body>
+
+</html>

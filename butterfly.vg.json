@@ -1,0 +1,77 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Butterfly chart: Participation Rate (left) and Unemployment Rate (right) by state in 2022.",
+    "data": { "url": "https://raw.githubusercontent.com/yueherngtang/fit3179w9hw/refs/heads/main/States.csv" },
+    "transform": [
+      {"filter": "datum.year == 2022"},
+      {
+        "calculate": "-datum.participation_rate",
+        "as": "neg_participation_rate"
+      },
+      {
+        "calculate": "abs(datum.participation_rate)",
+        "as": "abs_participation_rate"
+      }
+    ],
+    "spacing": 0,
+    "hconcat": [
+      {
+        "title": "Participation Rate",
+        "mark": "bar",
+        "encoding": {
+          "y": {
+            "field": "state",
+            "type": "nominal",
+            "axis": null
+          },
+          "x": {
+            "field": "neg_participation_rate",
+            "title": "Participation Rate",
+            "axis": {"format": ".1f"}
+          },
+          "tooltip": [
+            {"field": "state", "title": "State"},
+            {"field": "abs_participation_rate", "title": "Participation Rate", "format": ".1f"}
+          ],
+          "color": {"value": "#675193"}
+        }
+      },
+      {
+        "width": 50,
+        "view": {"stroke": null},
+        "mark": {
+          "type": "text",
+          "align": "center"
+        },
+        "encoding": {
+          "y": {"field": "state", "type": "ordinal", "axis": null, "sort": "ascending"},  
+        "text": {"field": "state", "type": "nominal"}
+        }
+      },
+      {
+        "title": "Unemployment Rate",
+        "mark": "bar",
+        "encoding": {
+          "y": {
+            "field": "state",
+            "axis": null
+          },
+          "x": {
+            "field": "unemployment_rate",
+            "title": "Unemployment Rate",
+            "axis": {"format": ".1f"}
+          },
+          "tooltip": [
+            {"field": "state", "title": "State"},
+            {"field": "unemployment_rate", "title": "Unemployment Rate", "format": ".1f"}
+          ],
+          "color": {"value": "#ca8861"}
+        }
+      }
+    ],
+    "config": {
+      "view": {"stroke": null},
+      "axis": {"grid": false}
+    }
+  }
+  

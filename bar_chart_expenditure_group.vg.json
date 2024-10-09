@@ -1,0 +1,71 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Faceted Column Charts without Annotations, Labels, or Scales",
+    "data": {
+      "url": "https://raw.githubusercontent.com/yueherngtang/fit3179w10hw/refs/heads/master/expenditure_group_percentage_expenditure.csv"
+    },
+    "background": "transparent",
+     "transform": [
+        {
+          "calculate": "format(datum.percentage_of_expenditure, '.1f') + '%' ",
+          "as": "percentage_of_expenditure_percentage"
+        }
+  
+     ],
+    "facet": {
+      "field": "year",
+      "type": "ordinal",
+      "header": {    
+        "title": null,
+        "labelFontSize": 14   
+      }
+    },
+    "spec": {
+      "width":77,
+      "height": 460,
+      "layer": [
+        {
+          "mark": "bar",
+          "encoding": {
+            "x": {
+              "field": "percentage_of_expenditure",
+              "type": "quantitative",
+              "axis": null  
+            },
+            "y": {
+              "field": "expenditure_group",
+              "type": "nominal",
+             "sort": {"field": "percentage_of_expenditure", "order": "descending"},
+              "axis": null
+            },
+            "color": {
+              "field": "expenditure_group",
+              "type": "nominal",
+              "legend": null  
+            },
+            "tooltip": [  
+              {"field": "expenditure_group", "type": "nominal", "title": "Expenditure Type"},
+              {"field": "percentage_of_expenditure_percentage", "type": "nominal", "title": "Percentage of Expenditure"},
+              {"field": "rank", "type": "ordinal", "title": "Rank"},
+              {"field": "year", "type": "ordinal", "title": "Year"}
+            ]
+          }
+        }
+      ]
+    },
+    "config": {
+      "facet": {
+        "spacing": 80  
+      },
+      "view": {
+        "stroke": null  
+      }
+    },
+    "resolve": {
+      "scale": {
+        "x": "independent",  
+        "y": "independent"
+      }
+    }
+  }
+  

@@ -1,0 +1,155 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "Parallel coordinates plot showing income and expenditure statistics per state, with a dropdown menu to select year.",
+    "data": {
+      "url": "https://raw.githubusercontent.com/yueherngtang/fit3179w10hw/refs/heads/master/States_coordinate.csv",
+      "format": {"type": "csv"}
+    },
+    "width": 800,
+    "height": 300,
+    "transform": [
+      {"filter": "datum['year'] == Year"},
+      {"fold": ["absolute_poverty","mean_eti_ratio", "unemployment_rate", "median_income", "median_expenditure"]},
+      {
+        "calculate": "toNumber(datum['value'])",
+        "as": "numeric_value"
+      },
+      {
+        "calculate": "datum.key === 'absolute_poverty' ? 0 : datum.key === 'mean_eti_ratio' ? 0.45 : datum.key === 'unemployment_rate' ? 0 : datum.key === 'median_income' ? 3000 : datum.key === 'median_expenditure' ? 2000 : 0",
+        "as": "custom_min"
+      },
+      {
+        "calculate": "datum.key === 'absolute_poverty' ? 25 : datum.key === 'mean_eti_ratio' ? 0.75 : datum.key === 'unemployment_rate' ? 9 : datum.key === 'median_income' ? 11000 : datum.key === 'median_expenditure' ? 7000 : 1",
+        "as": "custom_max"
+      },
+      {
+        "joinaggregate": [
+          {"op": "min", "field": "numeric_value", "as": "min"},
+          {"op": "max", "field": "numeric_value", "as": "max"}
+        ],
+        "groupby": ["key"]
+      },
+      {
+        "calculate": "(toNumber(datum.value) - toNumber(datum.custom_min)) / (toNumber(datum.custom_max) - toNumber(datum.custom_min))",
+        "as": "norm_val"
+      },
+      {
+        "calculate": "(toNumber(datum.custom_max) + toNumber(datum.custom_min)) / 2",
+        "as": "mid"
+      }
+    ],
+    "layer": [
+        {
+            "encoding": {
+              "x": {"type": "nominal", "field": "key"},
+              "y": {"value": 0}
+            },
+            "layer": [
+              {
+                "mark": {"type": "text", "style": "label"},
+                "encoding": {
+                  "text": {"aggregate": "max", "field": "custom_max", "type": "quantitative"}
+                }
+              },
+              {
+                "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+              }
+            ]
+          },
+          {
+            "encoding": {
+              "x": {"type": "nominal", "field": "key"},
+              "y": {"value": 150}
+            },
+            "layer": [
+              {
+                "mark": {"type": "text", "style": "label"},
+                "encoding": {
+                  "text": {"aggregate": "min", "field": "mid", "type": "quantitative"}
+                }
+              },
+              {
+                "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+              }
+            ]
+          },
+          {
+            "encoding": {
+              "x": {"type": "nominal", "field": "key"},
+              "y": {"value": 300}
+            },
+            "layer": [
+              {
+                "mark": {"type": "text", "style": "label"},
+                "encoding": {
+                  "text": {"aggregate": "min", "field": "custom_min", "type": "quantitative"}
+                }
+              },
+              {
+                "mark": {"type": "tick", "style": "tick", "size": 8, "color": "#ccc"}
+              }
+            ]
+          },
+        
+          
+      {
+        "mark": {"type": "bar", "size": 10},
+        "transform": [{"filter": "datum['state'] == 'Malaysia'"},{"calculate": "'M-' + datum['key']", "as": "shifted_key"}],
+        "encoding": {
+          "x": {"type": "nominal", "field": "key"},
+          "y": {"type": "quantitative", "field": "norm_val", "axis": null},
+          "color": {"value": "grey"},  
+          "tooltip": [
+            {"field": "state", "type": "nominal", "title": "State"},
+            {"field": "year", "type": "nominal", "title": "Year"},
+            {"field": "numeric_value", "type": "quantitative", "title": "Raw Value"}
+          ]
+        }
+      },
+      {
+        "mark": {"type": "rule", "color": "#ccc"},
+        "encoding": {
+          "detail": {"aggregate": "count"},
+          "x": {"field": "key"}
+        }
+      },
+      {
+        "mark": "line",
+        "encoding": {
+          "color": {"type": "nominal", "field": "state"},
+          "detail": {"type": "nominal", "field": "index"},
+          "opacity": {"value": 0.7},
+          "x": {"type": "nominal", "field": "key"},
+          "y": {"type": "quantitative", "field": "norm_val", "axis": null},
+          "tooltip": [
+            {"field": "state", "type": "nominal", "title": "State"},
+            {"field": "year", "type": "nominal", "title": "Year"},
+            {"field": "median_income", "type": "nominal", "title": "median_income"},
+            {"field": "absolute_poverty", "type": "quantitative", "title": "Poverty"},
+            {"field": "unemployment_rate", "type": "quantitative", "title": "Employ"},
+            {"field": "norm_val", "type": "quantitative", "title": "Vafflue"}
+          ]
+        }
+      }
+    ],
+    "params": [
+      {
+        "name": "Year",
+        "value": 2022,
+        "bind": {
+          "input": "select",
+          "options": [2016, 2019, 2022],
+          "name": "Select Year: "
+        }
+      }
+    ],
+    "config": {
+      "axisX": {"domain": false, "labelAngle": 0, "tickColor": "#ccc", "title": null},
+      "view": {"stroke": null},
+      "style": {
+        "label": {"baseline": "middle", "align": "right", "dx": -5},
+        "tick": {"orient": "horizontal"}
+      }
+    }
+  }
+  

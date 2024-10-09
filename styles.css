@@ -1,0 +1,31 @@
+.vega-tooltip {
+    font-size: 14px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 3px;
+}
+
+.vega-tooltip .title {
+    font-weight: normal; /* Keeps the title normal (not bold) */
+}
+
+.vega-tooltip .value {
+    font-weight: bold; /* Makes only the values bold */
+}
+
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* Use flexbox on the body to center the dashboard */
+body {
+    display: flex;
+    justify-content: center; /* Horizontally center */
+    align-items: center; /* Vertically center */
+    background-color: #f4f4f4; /* Optional: Set a background color */
+}
+

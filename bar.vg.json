@@ -1,0 +1,13 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A simple bar chart with embedded data.",
+    "data": { "url": "https://raw.githubusercontent.com/yueherngtang/fit3179w9hw/refs/heads/main/States.csv" },
+    "transform": [
+        {"filter": "datum.year == 2022"}],
+    "mark": "bar",
+    "encoding": {
+      "x": {"field": "state", "type": "nominal", "axis": {"labelAngle": 0}},
+      "y": {"field": "unemployment_rate", "type": "quantitative"}
+    }
+  }
+  

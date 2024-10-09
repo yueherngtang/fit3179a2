@@ -1,0 +1,158 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 650,
+    "height": 400,
+    "padding": {"left": 50, "right": 160, "top": 30, "bottom": 40}, 
+    "autosize": "none",
+    "title": "Unemployment Rate by Poverty Rate ",
+    "background": "transparent",
+    "data": {
+      "url": "2022.csv"
+    },
+    "params": [
+      {
+        "name": "Region",
+        "bind": {
+          "input": "select",
+          "options": [
+            null,
+            "Northern",
+            "Central",
+            "Southern",
+            "East Coast",
+            "East Malaysia"
+          ],
+          "labels": [
+            "Show All",
+            "Northern",
+            "Central",
+            "Southern",
+            "East Coast",
+            "East Malaysia"
+          ],
+          "name": "Region Selection: "
+        }
+      }
+    ],
+    "transform": [
+      {
+        "filter": "Region == null || datum.region == Region"
+      },
+      {
+        "calculate": "format(datum.poverty_absolute, '.2f')+ '%' ",
+        "as": "poverty_rate_percentage"
+      },
+      {
+        "calculate": "format(datum.unemployment_rate, '.2f') + '%' ",
+        "as": "unemployment_rate_percentage"
+      },
+      {
+        "calculate": "'State: <b>' + datum.state + '</b>'", 
+        "as": "state_tooltip"
+      },
+      {
+        "calculate": "'Poverty Rate: <b>' + format(datum.poverty_absolute, '.2f') + '%</b>'", 
+        "as": "poverty_tooltip"
+      },
+      {
+        "calculate": "'Unemployment Rate: <b>' + format(datum.unemployment_rate, '.2f') + '%</b>'", 
+        "as": "unemployment_tooltip"
+      },
+      {
+        "calculate": "'Expenditure-To-Income Ratio: <b>' + format(datum['expenditure-to-income-ratio'], ',.4f') + '</b>'", 
+        "as": "expenditure_tooltip"
+      }
+    ],
+    "encoding": {
+      "x": {
+        "field": "poverty_absolute",
+        "type": "quantitative",
+        "title": "Poverty Rate (%)",
+        "axis": {"tickCount": 10},
+        "scale": {"domain": [0, 25]}
+      },
+      "y": {
+        "field": "unemployment_rate",
+        "type": "quantitative",
+        "title": "Unemployment Rate (%)",
+        "axis": {"tickCount": 10},
+        "scale": {"domain": [0, 10]}
+      }
+    },
+    "layer": [
+      {
+        "mark": "circle",
+        "encoding": {
+          "size": {
+            "field": "expenditure-to-income-ratio",
+            "title": "Expenditure-To-Income Ratio",
+            "type": "quantitative",
+            "scale": {
+              "type": "threshold",
+              "domain": [0.2, 0.5, 0.8, 1.0],
+              "range": [10, 50, 500, 3000, 6000, 5000]
+            },
+            "legend": {}
+          },
+          "color": {
+        "field": "region",
+        "title": "Region",
+        "type": "nominal",
+        "scale": {
+        "domain": [
+            "Northern",
+            "Central",
+            "Southern",
+            "East Coast",
+            "East Malaysia"
+        ],
+        "range": [
+        "#e41a1c",
+        "#984ea3",
+        "#ff7f00",
+        "#a6cee3",
+        "#377eb8"
+        ]}}
+        ,
+          "opacity": {"value": 0.6},
+          "tooltip": [
+            {"field": "state", "type": "nominal","title": "State"},
+            {"field": "poverty_rate_percentage", "type": "nominal","title": "Poverty Rate"}, 
+            {"field": "unemployment_rate_percentage", "type": "nominal", "title": "Unemployment Rate"},
+            {"field": "expenditure-to-income-ratio", "type": "quantitative", "format": ",.4f", "title": "Expenditure-To-Income Ratio"}
+          
+          ]
+        }
+      }
+
+      ,
+
+      {
+        "mark": {
+          "type": "text",
+          "align": "right",
+          "baseline": "top",
+          "dx": -12,
+          "fontSize": 11.5,
+          "fontStyle": "italic"
+        },
+        "encoding": {
+          "text": {"field": "state", "type": "nominal"},
+          "color": {"value": "black"},
+          "opacity": {
+            "condition": {
+              "test": "datum['state'] == 'Sabah' || datum['state'] == 'W.P. Labuan' || datum['state'] == 'Perak'",
+              "value": 1
+            },
+            "value": 0
+          },
+          "tooltip": [
+            {"field": "state", "type": "nominal","title": "State"},
+            {"field": "poverty_rate_percentage", "type": "nominal","title": "Poverty Rate"}, 
+            {"field": "unemployment_rate_percentage", "type": "nominal", "title": "Unemployment Rate"},
+            {"field": "expenditure-to-income-ratio", "type": "quantitative", "format": ",.4f", "title": "Expenditure-To-Income Ratio"}
+          ]
+        }
+      }
+    ]
+  }

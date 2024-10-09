@@ -1,0 +1,100 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {
+      "url": "https://raw.githubusercontent.com/yueherngtang/fit3179w10hw/refs/heads/master/Unemployment%20Rate%20by%20states.csv"
+    },
+    "background": "transparent",
+    "transform":[
+       {
+            "calculate": "format(datum.unemployment_rate, '.1f') + '%' ",
+            "as": "unemployment_rate_percentage"
+          }
+    ],
+    "vconcat": [
+      {
+        "width": 650,
+        "height": 100,
+        "title": "Use this line chart to filter the data based on time",
+        "mark": {
+          "type": "line", 
+          "point": true   
+        },
+        "encoding": {
+          "x": {
+            "field": "year",
+            "type": "temporal",
+            "axis": {"title": "Year"}
+          },
+          "y": {
+            "field": "unemployment_rate",
+            "type": "quantitative",
+            "axis": {"title": "Country Unemployment Rate (%)"}
+          },
+          "color": {"value": "blue"},
+          "tooltip": [
+            {"field": "year", "type": "temporal", "title": "Year:"},
+            {"field": "unemployment_rate_percentage", "type": "nominal", "title": "Unemployment Rate:"}
+          ]
+        },
+        "params": [
+          {
+            "name": "time_brush",
+            "select": {
+              "type": "interval",
+              "encodings": ["x"]
+            }
+          }
+        ],
+        "transform": [
+          {"filter": "datum.state == 'Malaysia'"}
+        ]
+      },
+      {
+        "width": 650,
+        "height": 400,
+        "title": "Unemployment Rate by State",
+        "mark": {
+          "type": "line", 
+          "point": true   
+        },
+        "params": [
+          {
+            "name": "highlight",
+            "select": {"type": "point", "encodings": ["color"]}
+          }
+        ],
+        "encoding": {
+          "x": {
+            "field": "year",
+            "timeUnit": "year",
+            "type": "temporal",
+            "scale": {"domain": {"param": "time_brush"}},
+            "axis": {"title": "Year"}
+          },
+          "y": {
+            "field": "unemployment_rate",
+            "type": "quantitative",
+            "axis": {"title": "Unemployment Rate"}
+          },
+          "color": {
+            "condition": {
+              "param": "highlight",
+              "field": "state",
+              "type": "nominal",
+              "legend": {"title": "State"}
+            },
+            "value": "lightgray"
+          },
+          "tooltip": [
+            {"field": "year", "type": "temporal", "title": "Year:"},
+            {"field": "state", "type": "nominal", "title": "State:"},
+            {"field": "unemployment_rate_percentage", "type": "nominal", "title": "Unemployment Rate:"}
+          ]
+        },
+        "transform": [
+          {"filter": "datum.state != 'Malaysia'"}
+        ]
+      }
+    ]
+  }
+  
