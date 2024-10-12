@@ -1,7 +1,7 @@
 {
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "data": {
-      "url": "https://raw.githubusercontent.com/yueherngtang/fit3179w10hw/refs/heads/master/Unemployment%20Rate%20by%20states.csv"
+      "url": "https://raw.githubusercontent.com/yueherngtang/fit3179a2/refs/heads/main/Unemployment%20Rate%20by%20states.csv"
     },
     "background": "transparent",
     "transform":[
@@ -12,7 +12,7 @@
     ],
     "vconcat": [
       {
-        "width": 650,
+        "width": 670,
         "height": 100,
         "title": "Use this line chart to filter the data based on time",
         "mark": {
@@ -50,8 +50,8 @@
         ]
       },
       {
-        "width": 650,
-        "height": 400,
+        "width": 670,
+        "height": 360,
         "title": "Unemployment Rate by State",
         "mark": {
           "type": "line", 
@@ -60,8 +60,14 @@
         "params": [
           {
             "name": "highlight",
-            "select": {"type": "point", "encodings": ["color"]}
+            "select": {
+              "type": "point",
+              "on": "click",
+              "encodings": ["color"]
+            },
+            "bind": "legend" 
           }
+          
         ],
         "encoding": {
           "x": {
@@ -81,7 +87,14 @@
               "param": "highlight",
               "field": "state",
               "type": "nominal",
-              "legend": {"title": "State"}
+              "scale": {
+              "range": [
+                "#000000","#004949","#009292","#ff6db6","#ffb6db",
+                "#490092","#006ddb","#b66dff","#6db6ff",
+                "#920000","#b6dbff","#924900","#db6d00","#24ff24","orange", "#ed1a88"
+              ]
+            },
+              "legend": {"title": "State", "labelFontSize": 12}
             },
             "value": "lightgray"
           },

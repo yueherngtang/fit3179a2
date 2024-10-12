@@ -1,61 +1,71 @@
 {
-    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-    "description": "Expenditure Group Ranking and Percentage Over Time",
-    "width": 630,
-    "height": 500,
-    "background": "transparent",
-    "data": {
-      "url": "https://raw.githubusercontent.com/yueherngtang/fit3179w10hw/refs/heads/master/expenditure_group_percentage_expenditure.csv"
-    },
-    "layer": [
-      {
-        "mark": {"type": "line","interpolate": "monotone"},
-        "encoding": {
-          "x": {
-            "field": "year",
-            "type": "quantitative",
-            "scale": {
-              "domain": [2010, 2022]  
-            },
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "description": "Expenditure Group Ranking and Percentage Over Time",
+  "width": 570,
+  "height": 500,
+  "background": "transparent",
+  "title": {
+    "text": "Expenditure Group Ranking and Percentage Over Time",
+    "dy": -20
+  },
+  "data": {
+    "url": "https://raw.githubusercontent.com/yueherngtang/fit3179a2/256a45c4773b38c4cf1d6b58247d25a653f34153/expenditure_group_percentage_expenditure.csv"
+  },
+  "layer": [
+    {
+      "mark": {"type": "line", "interpolate": "monotone"},
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {"domain": [2010, 2022]},
           "axis": null
+        },
+        "y": {
+          "field": "rank",
+          "type": "quantitative",
+          "sort": "descending",
+          "scale": {"domain": [0, 13]},
+          "title": "Ranking",
+          "axis": {
+            "values": [1,2,3,4,5,6,7,8,9,10,11,12],
+            "labelFontSize": 14,
+            "grid": false,
+            "domain": false
+          }
+        },
+        "color": {
+          "field": "expenditure_group",
+          "type": "nominal",
+          "scale": {
+            "range": ["#000000", "#004949", "#009292", "#ff6db6", "#ffb6db", "#490092", "#006edb", "#b66dff", "#6db6ff","#924900", "#54fff9", "#db6d00", "#24ff24", "#ffff6d"]
           },
-          "y": {
-            "field": "rank",
-            "type": "quantitative",
-            "sort": "descending",
-            "scale": {
-              "domain": [0, 13]  
-            },
-            "title": "Ranking",
-            "axis": {
-              "values": [1,2,3,4,5,6,7,8,9,10,11,12],  
-              "labelFontSize": 14,
-              "grid": false,
-              "domain": false 
-            }
-          },
-          "color": {"field": "expenditure_group", "type": "nominal",  "legend": {
-            "orient": "bottom",  
-            "columns": 3,        
-            "title": null,        
-            "labelFontSize": 12,  
-            "labelLimit": 250,    
-            "padding": 10             
-          }},
-          "order": {"field": "year", "type": "quantitative"},
-          "tooltip": [
-            {"field": "expenditure_group", "type": "nominal"},
-            {"field": "percentage_of_expenditure", "type": "quantitative"},
-            {"field": "rank", "type": "quantitative"}
-          ]
+          "legend": {
+            "symbolType": "circle",
+            "orient": "right",
+            "title": "Type of Expenditure",
+            "labelFontSize": 12,
+            "labelLimit": 250,
+            "padding": 0,
+            "offset": 100
+          }
         }
       }
-    ],
-    "config": {
-      "view": {
-        "stroke": null 
-
+    },
+    {
+      "mark": {"type": "point", "filled": true, "size": 0},
+      "encoding": {
+        "x": {"field": "year", "type": "quantitative"},
+        "y": {"field": "rank", "type": "quantitative"},
+        "color": {
+          "field": "expenditure_group",
+          "type": "nominal"
+          
+        }
       }
     }
+  ],
+  "config": {
+    "view": {"stroke": null}
   }
-  
+}

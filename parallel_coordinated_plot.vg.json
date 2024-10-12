@@ -1,11 +1,25 @@
 {
     "$schema": "https://vega.github.io/schema/vega/v5.json",
     "description": "Parallel coordinates plot showing income and expenditure statistics per state, with bars for Malaysia.",
-    "width": 700,
-    "height": 400,
+    "width": 570,
+    "height": 380,
     "padding": 5,
-  
+    "title": {
+    "text": "Income & Expenditure vs Poverty & Unemployment Rate",
+    "dy": -20,
+    "dx": -60
+  },
+    "config": {
+    "axisY": {
+      "titleX": 60,
+      "titleY": 400,
+      "titleAngle": 0,
+      "titleAlign": "right",
+      "titleBaseline": "top"
+    }
+  },
     "signals": [
+      
       {
         "name": "selectedYear",
         "value": "2022",
@@ -22,9 +36,7 @@
         "value": {},
         "on": [
           {"events": "rect:mouseover", "update": "datum"},
-          {"events": "rect:mouseout", "update": "{}"},
-          {"events": "line:mouseover", "update": "datum"},
-          {"events": "line:mouseout", "update": "{}"}
+          {"events": "rect:mouseout", "update": "{}"}
         ]
       }
     ],
@@ -32,7 +44,7 @@
     "data": [
       {
         "name": "states",
-        "url": "https://raw.githubusercontent.com/yueherngtang/fit3179w10hw/refs/heads/master/States_coordinate.csv",
+        "url": "https://raw.githubusercontent.com/yueherngtang/fit3179a2/refs/heads/main/States_coordinate.csv",
         "format": {"type": "csv"},
         "transform": [
           { "type": "filter", "expr": "datum.year == selectedYear && datum.state != 'Malaysia'" }
@@ -40,7 +52,7 @@
       },
       {
         "name": "malaysia",
-        "url": "https://raw.githubusercontent.com/yueherngtang/fit3179w10hw/refs/heads/master/States_coordinate.csv",
+        "url": "https://raw.githubusercontent.com/yueherngtang/fit3179a2/refs/heads/main/States_coordinate.csv",
         "format": {"type": "csv"},
         "transform": [
           { "type": "filter", "expr": "datum.year == selectedYear && datum.state == 'Malaysia'" }
@@ -72,7 +84,7 @@
         "range": "height",
         "zero": false,
         "nice": true,
-        "domain": [0.5, 0.75]
+        "domain": [0.48, 0.75]
       },
       {
         "name": "median_income",
@@ -110,7 +122,11 @@
         "name": "color",
         "type": "ordinal",
         "domain": {"data": "states", "field": "state"},
-        "range": {"scheme": "category20"}
+        "range":  [
+     "#000000","#004949","#009292","#ff6db6","#ffb6db",
+ "#490092","#006ddb","#b66dff","#6db6ff",
+ "#920000", "#b6dbff","#924900","#db6d00","#24ff24","orange", "#ed1a88"
+    ]
       }
     ],
   
@@ -119,7 +135,8 @@
         "orient": "left",
         "zindex": 1,
         "scale": "mean_eti_ratio",
-        "title": "Expenditure to Income Ratio",
+        "title": "Expenditure-Income Ratio",
+        
         "offset": {"scale": "ord", "value": "mean_eti_ratio", "mult": -1}
       },
       {
@@ -140,14 +157,14 @@
         "orient": "left",
         "zindex": 1,
         "scale": "absolute_poverty",
-        "title": "Poverty Rate",
+        "title": "Poverty Rate (%)",
         "offset": {"scale": "ord", "value": "absolute_poverty", "mult": -1}
       },
       {
         "orient": "left",
         "zindex": 1,
         "scale": "unemployment_rate",
-        "title": "Unemployment Rate",
+        "title": "Unemployment Rate (%)",
         "offset": {"scale": "ord", "value": "unemployment_rate", "mult": -1}
       }
       
@@ -157,7 +174,8 @@
       "fill": "color",
       "title": "State",
       "orient": "right",
-      "symbolType": "circle"
+      "symbolType": "circle",
+      "labelFontSize": 12
     }],
   
     "marks": [
@@ -177,7 +195,7 @@
                   {
                     "test": "datum.data === 'mean_eti_ratio'",
                     "scale": "mean_eti_ratio",
-                    "value": 0.5  
+                    "value": 0.48
                   },
                   {
                     "test": "datum.data === 'median_income'",
@@ -200,12 +218,12 @@
                     "value": 0  
                   }
                 ],
-                "fill": {"value": "orange"},
+                "fill": {"value": "#cfcf06"},
                 "fillOpacity": {"value": 0.6}
               },
               "update": {
                 "tooltip": {
-                  "signal": "{'Country': 'Malaysia', 'Metric': datum.data === 'mean_eti_ratio' ? 'Expenditure to Income Ratio' : datum.data === 'median_income' ? 'Median Income' : datum.data === 'median_expenditure' ? 'Median Expenditure' : datum.data === 'absolute_poverty' ? 'Poverty Rate' : datum.data === 'unemployment_rate' ? 'Unemployment Rate' : datum.data, 'Value': datum.data === 'mean_eti_ratio' ? format(parent[datum.data], '.2f') + '%' : datum.data === 'median_income' || datum.data === 'median_expenditure' ? 'RM' + format(parent[datum.data], '.2f') : format(parent[datum.data], '.2f') + '%'}"
+                  "signal": "{'Country': 'Malaysia', 'Metric': datum.data === 'mean_eti_ratio' ? 'Expenditure to Income Ratio' : datum.data === 'median_income' ? 'Median Income' : datum.data === 'median_expenditure' ? 'Median Expenditure' : datum.data === 'absolute_poverty' ? 'Poverty Rate' : datum.data === 'unemployment_rate' ? 'Unemployment Rate' : datum.data, 'Value': datum.data === 'mean_eti_ratio' ? format(parent[datum.data], '.2f') : datum.data === 'median_income' || datum.data === 'median_expenditure' ? 'RM' + format(parent[datum.data], '.2f') : format(parent[datum.data], '.2f') + '%'}"
                 }
               }
             }
@@ -227,12 +245,7 @@
                   "field": {"parent": {"datum": "data"}}
                 },
                 "stroke": {"scale": "color", "field": {"parent": "state"}},
-                "strokeWidth": {"value": 1}
-              },
-              "update": {
-                "tooltip": {
-                  "signal": "{'Country': parent.state, 'Metric': datum.data === 'mean_eti_ratio' ? 'Expenditure to Income Ratio' : datum.data === 'median_income' ? 'Median Income' : datum.data === 'median_expenditure' ? 'Median Expenditure' : datum.data === 'absolute_poverty' ? 'Poverty Rate' : datum.data === 'unemployment_rate' ? 'Unemployment Rate' : datum.data, 'Value': datum.data === 'mean_eti_ratio' ? format(parent[datum.data], '.2f') + '%' : datum.data === 'median_income' || datum.data === 'median_expenditure' ? 'RM' + format(parent[datum.data], '.2f') : format(parent[datum.data], '.2f') + '%'}"
-                }
+                "strokeWidth": {"value": 1.6}
               }
             }
           }
@@ -257,7 +270,7 @@
               },
               "update": {
                 "tooltip": {
-                  "signal": "{'Country': parent.state, 'Metric': datum.data === 'mean_eti_ratio' ? 'Expenditure to Income Ratio' : datum.data === 'median_income' ? 'Median Income' : datum.data === 'median_expenditure' ? 'Median Expenditure' : datum.data === 'absolute_poverty' ? 'Poverty Rate' : datum.data === 'unemployment_rate' ? 'Unemployment Rate' : datum.data, 'Value': datum.data === 'mean_eti_ratio' ? format(parent[datum.data], '.2f') + '%' : datum.data === 'median_income' || datum.data === 'median_expenditure' ? 'RM' + format(parent[datum.data], '.2f') : format(parent[datum.data], '.2f') + '%'}"
+                  "signal": "{'State': parent.state, 'Metric': datum.data === 'mean_eti_ratio' ? 'Expenditure to Income Ratio' : datum.data === 'median_income' ? 'Median Income' : datum.data === 'median_expenditure' ? 'Median Expenditure' : datum.data === 'absolute_poverty' ? 'Poverty Rate' : datum.data === 'unemployment_rate' ? 'Unemployment Rate' : datum.data, 'Value': datum.data === 'mean_eti_ratio' ? format(parent[datum.data], '.2f'): datum.data === 'median_income' || datum.data === 'median_expenditure' ? 'RM' + format(parent[datum.data], '.2f') : format(parent[datum.data], '.2f') + '%'}"
                 }
               }
             }

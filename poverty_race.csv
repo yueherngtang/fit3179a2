@@ -1,0 +1,193 @@
+state,date,ethnicity,population,poverty rate
+Johor,2016,Chinese,1085.4,6.2
+Kedah,2016,Chinese,257.3,14.3
+Kelantan,2016,Chinese,55.4,19.5
+Melaka,2016,Chinese,216.9,2.6
+Negeri Sembilan,2016,Chinese,229.8,6.4
+Pahang,2016,Chinese,232.6,9.2
+Perak,2016,Chinese,700.1,8.2
+Perlis,2016,Chinese,19.2,7.2
+Pulau Pinang,2016,Chinese,688.9,2.2
+Sabah,2016,Chinese,307,23.9
+Sarawak,2016,Chinese,615.8,11.9
+Selangor,2016,Chinese,1544,0.8
+Terengganu,2016,Chinese,28.3,6.8
+W.P. Kuala Lumpur,2016,Chinese,654.9,0.8
+W.P. Labuan,2016,Chinese,9.5,6.8
+W.P. Putrajaya,2016,Chinese,0.5,0
+Johor,2016,Indian,232.5,6.2
+Kedah,2016,Indian,140.5,14.3
+Kelantan,2016,Indian,4.8,19.5
+Melaka,2016,Indian,50.6,2.6
+Negeri Sembilan,2016,Indian,153.7,6.4
+Pahang,2016,Indian,64.9,9.2
+Perak,2016,Indian,280.4,8.2
+Perlis,2016,Indian,3.1,7.2
+Pulau Pinang,2016,Indian,165.7,2.2
+Sabah,2016,Indian,12.3,23.9
+Sarawak,2016,Indian,7.5,11.9
+Selangor,2016,Indian,719.6,0.8
+Terengganu,2016,Indian,2.4,6.8
+W.P. Kuala Lumpur,2016,Indian,151.7,0.8
+W.P. Labuan,2016,Indian,0.7,6.8
+W.P. Putrajaya,2016,Indian,1.1,0
+Johor,2016,Malay,1908.6,6.2
+Kedah,2016,Malay,1603,14.3
+Kelantan,2016,Malay,1653.6,19.5
+Melaka,2016,Malay,568.9,2.6
+Negeri Sembilan,2016,Malay,611.5,6.4
+Pahang,2016,Malay,1141.6,9.2
+Perak,2016,Malay,1315.8,8.2
+Perlis,2016,Malay,214.3,7.2
+Pulau Pinang,2016,Malay,707.1,2.2
+Sabah,2016,Malay,281.5,23.9
+Sarawak,2016,Malay,624.7,11.9
+Selangor,2016,Malay,3240.5,0.8
+Terengganu,2016,Malay,1113.1,6.8
+W.P. Kuala Lumpur,2016,Malay,700.8,0.8
+W.P. Labuan,2016,Malay,33.2,6.8
+W.P. Putrajaya,2016,Malay,78.4,0
+Johor,2016,Other,18.4,6.2
+Kedah,2016,Other,20.4,14.3
+Kelantan,2016,Other,11,19.5
+Melaka,2016,Other,4.6,2.6
+Negeri Sembilan,2016,Other,4,6.4
+Pahang,2016,Other,5.6,9.2
+Perak,2016,Other,9.5,8.2
+Perlis,2016,Other,4.9,7.2
+Pulau Pinang,2016,Other,5,2.2
+Sabah,2016,Other,121.4,23.9
+Sarawak,2016,Other,7.9,11.9
+Selangor,2016,Other,45.2,0.8
+Terengganu,2016,Other,2.4,6.8
+W.P. Kuala Lumpur,2016,Other,17.9,0.8
+W.P. Labuan,2016,Other,2.5,6.8
+W.P. Putrajaya,2016,Other,0.1,0
+Johor,2019,Chinese,1103.9,3.9
+Kedah,2019,Chinese,259.1,8.8
+Kelantan,2019,Chinese,56.8,12.4
+Melaka,2019,Chinese,217.4,3.9
+Negeri Sembilan,2019,Chinese,229.6,4.3
+Pahang,2019,Chinese,232.6,4.3
+Perak,2019,Chinese,692.2,7.3
+Perlis,2019,Chinese,18.9,3.9
+Pulau Pinang,2019,Chinese,694,1.9
+Sabah,2019,Chinese,307.2,19.5
+Sarawak,2019,Chinese,625,9
+Selangor,2019,Chinese,1567.1,1.2
+Terengganu,2019,Chinese,28.5,6.1
+W.P. Kuala Lumpur,2019,Chinese,654.9,0.2
+W.P. Labuan,2019,Chinese,9.6,3.1
+W.P. Putrajaya,2019,Chinese,2.1,0.4
+Johor,2019,Indian,241.8,3.9
+Kedah,2019,Indian,140.8,8.8
+Kelantan,2019,Indian,4.8,12.4
+Melaka,2019,Indian,51.4,3.9
+Negeri Sembilan,2019,Indian,154,4.3
+Pahang,2019,Indian,67.7,4.3
+Perak,2019,Indian,275.7,7.3
+Perlis,2019,Indian,3.1,3.9
+Pulau Pinang,2019,Indian,166.8,1.9
+Sabah,2019,Indian,13.3,19.5
+Sarawak,2019,Indian,7.7,9
+Selangor,2019,Indian,731,1.2
+Terengganu,2019,Indian,2.5,6.1
+W.P. Kuala Lumpur,2019,Indian,151.8,0.2
+W.P. Labuan,2019,Indian,0.8,3.1
+W.P. Putrajaya,2019,Indian,1.7,0.4
+Johor,2019,Malay,2005.5,3.9
+Kedah,2019,Malay,1661,8.8
+Kelantan,2019,Malay,1740.4,12.4
+Melaka,2019,Malay,594.5,3.9
+Negeri Sembilan,2019,Malay,639.6,4.3
+Pahang,2019,Malay,1183.9,4.3
+Perak,2019,Malay,1350.3,7.3
+Perlis,2019,Malay,217.7,3.9
+Pulau Pinang,2019,Malay,753.9,1.9
+Sabah,2019,Malay,302.7,19.5
+Sarawak,2019,Malay,647.7,9
+Selangor,2019,Malay,3436.3,1.2
+Terengganu,2019,Malay,1174.3,6.1
+W.P. Kuala Lumpur,2019,Malay,698.5,0.2
+W.P. Labuan,2019,Malay,34.3,3.1
+W.P. Putrajaya,2019,Malay,94.9,0.4
+Johor,2019,Other,18.5,3.9
+Kedah,2019,Other,22,8.8
+Kelantan,2019,Other,11.5,12.4
+Melaka,2019,Other,5.6,3.9
+Negeri Sembilan,2019,Other,3.9,4.3
+Pahang,2019,Other,6.3,4.3
+Perak,2019,Other,10,7.3
+Perlis,2019,Other,4.9,3.9
+Pulau Pinang,2019,Other,5.1,1.9
+Sabah,2019,Other,127.2,19.5
+Sarawak,2019,Other,8.2,9
+Selangor,2019,Other,50.6,1.2
+Terengganu,2019,Other,3.3,6.1
+W.P. Kuala Lumpur,2019,Other,19.5,0.2
+W.P. Labuan,2019,Other,2.9,3.1
+W.P. Putrajaya,2019,Other,0.2,0.4
+Johor,2022,Chinese,1210.1,4.6
+Kedah,2022,Chinese,249.5,9
+Kelantan,2022,Chinese,44.5,13.2
+Melaka,2022,Chinese,204.3,4.2
+Negeri Sembilan,2022,Chinese,247.4,4.4
+Pahang,2022,Chinese,220.6,6.3
+Perak,2022,Chinese,638.3,7.5
+Perlis,2022,Chinese,20.2,4
+Pulau Pinang,2022,Chinese,715.2,2
+Sabah,2022,Chinese,246.1,19.7
+Sarawak,2022,Chinese,555.8,10.8
+Selangor,2022,Chinese,1757.8,1.5
+Terengganu,2022,Chinese,22.9,6.2
+W.P. Kuala Lumpur,2022,Chinese,730.7,1.4
+W.P. Labuan,2022,Chinese,9.7,2.5
+W.P. Putrajaya,2022,Chinese,0.6,0.1
+Johor,2022,Indian,244.7,4.6
+Kedah,2022,Indian,128.6,9
+Kelantan,2022,Indian,4.8,13.2
+Melaka,2022,Indian,52.4,4.2
+Negeri Sembilan,2022,Indian,162.4,4.4
+Pahang,2022,Indian,55.8,6.3
+Perak,2022,Indian,271.2,7.5
+Perlis,2022,Indian,5.1,4
+Pulau Pinang,2022,Indian,155.1,2
+Sabah,2022,Indian,5.9,19.7
+Sarawak,2022,Indian,5,10.8
+Selangor,2022,Indian,727.6,1.5
+Terengganu,2022,Indian,2.1,6.2
+W.P. Kuala Lumpur,2022,Indian,177,1.4
+W.P. Labuan,2022,Indian,0.9,2.5
+W.P. Putrajaya,2022,Indian,1.4,0.1
+Johor,2022,Malay,2208.6,4.6
+Kedah,2022,Malay,1665.5,9
+Kelantan,2022,Malay,1714.1,13.2
+Melaka,2022,Malay,669.6,4.2
+Negeri Sembilan,2022,Malay,711.9,4.4
+Pahang,2022,Malay,1161.4,6.3
+Perak,2022,Malay,1396.8,7.5
+Perlis,2022,Malay,249.4,4
+Pulau Pinang,2022,Malay,721.4,2
+Sabah,2022,Malay,316.1,19.7
+Sarawak,2022,Malay,591,10.8
+Selangor,2022,Malay,3907.9,1.5
+Terengganu,2022,Malay,1127.4,6.2
+W.P. Kuala Lumpur,2022,Malay,837.2,1.4
+W.P. Labuan,2022,Malay,34.9,2.5
+W.P. Putrajaya,2022,Malay,108.7,0.1
+Johor,2022,Other,19,4.6
+Kedah,2022,Other,25.7,9
+Kelantan,2022,Other,11,13.2
+Melaka,2022,Other,5.2,4.2
+Negeri Sembilan,2022,Other,5.8,4.4
+Pahang,2022,Other,9.4,6.3
+Perak,2022,Other,10.8,7.5
+Perlis,2022,Other,5.7,4
+Pulau Pinang,2022,Other,10.2,2
+Sabah,2022,Other,42.3,19.7
+Sarawak,2022,Other,6.5,10.8
+Selangor,2022,Other,54.9,1.5
+Terengganu,2022,Other,2.3,6.2
+W.P. Kuala Lumpur,2022,Other,12.7,1.4
+W.P. Labuan,2022,Other,1.1,2.5
+W.P. Putrajaya,2022,Other,0.3,0.1

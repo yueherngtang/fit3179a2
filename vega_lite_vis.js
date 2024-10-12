@@ -5,7 +5,7 @@ var vg_4 = "bump_chart_expenditure_group.vg.json";
 var vg_5 = "line_scrub.vg.json";
 var vg_6 = "parallel_coordinated_plot.vg.json";
 
-vegaEmbed("#map", vg_1, { actions: false } ).then(function(result) {
+vegaEmbed("#mappy", vg_1, { actions: false }).then(function(result) {
     // Access the Vega view instance (https://vega.github.io/vega/docs/api/view/) as result.view
 }).catch(console.error);
 

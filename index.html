@@ -10,7 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
     <script src="https://cdn.jsdelivr.net/npm/vega-tooltip@0.25.0"></script>
-    <link rel="stylesheet" href="style.css">
 
     <!-- Import pure.css -->
     <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
@@ -28,7 +27,6 @@
     <script src="vega_lite_vis.js"></script>
     <script src="donut_income_group.js"></script>
     <script src="donut_race.js"></script>
-    <script src="sample.js"></script>
 
     <style>
         body *{
@@ -46,7 +44,7 @@
 
         /* Customize the font for the h2 */
         h2 {
-            font-family: "Tahoma", sans-serif;
+            font-family: "Ebony Light", sans-serif;
             font-size: 22px;
             color: #000000;
             text-align: center;
@@ -63,6 +61,7 @@
         .dashboard-container {
             width: 1366px; /* Set a fixed width for the dashboard */
             padding: 40px; /* Optional padding inside the container */
+            height: 3700px;
             margin: auto;
             background-color: rgb(241, 241, 241); /* Optional: Add background color to the container */
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for effect */
@@ -86,14 +85,15 @@
         .tooltip {
             position: absolute;
             text-align: center;
-            width: 200px;
+            width: 280px;
             height: auto;
             padding: 5px;
-            font: 12px sans-serif;
+            font: 11px sans-serif;
             background: rgb(255, 255, 255);
             border: 0px;
             pointer-events: none;
             opacity: 0;
+            z-index: 1000;
         }
 
         .pure-g {
@@ -131,6 +131,21 @@
       height: 100%;
     }
 
+    #floatingTextBox {
+    position: relative;
+    top: 150px;       /* Adjust these values as needed */
+    left: 484px;      /* Adjust these values as needed */
+    width: 380px;    /* Set the width of the text box */
+    z-index: 10;     /* Ensure it floats above other content */
+    text-align: justify; /* This will justify the text inside the box */
+    font-size: 17.5px;
+    color: rgb(94, 94, 94);
+}
+
+.next-element {
+    margin-top: -150px;  /* Adjust based on the height of #floatingTextBox */
+}
+
 
     </style>
 
@@ -144,99 +159,78 @@
         <br>
     
         <div class="separator">
-            <span>Poverty Rate & Income Group</span>
+            <span>Poverty</span>
         </div>
 
-            <div id="mappy">
-                <script>
-                    // Initial rendering with the default year (2022)
-                    window.onload = function() {
-                    renderDonutChart(2022);  // Render chart for the default year
-                    renderDonutChart_race(2022);
-                    renderMap(2022);
-                    };
+        <br>
+        <div id="floatingTextBox">
+            <p><br>Since 2016, <strong style="color: #920000;">Sabah</strong> had the highest <strong>poverty rates</strong> in Malaysia, mainly due to its inadequate infrastructures. These issues significantly hindered economic growth and job creation, perpetuating high <strong>poverty rates</strong> across the state.</p>
+        </div>
     
-                    // Listen for changes in the dropdown and re-render the chart
-                    document.getElementById('yearSelect').addEventListener('change', function() {
-                    const selectedYear = this.value;
-                    renderDonutChart(selectedYear);  // Re-render the chart based on the selected year
-                    renderDonutChart_race(selectedYear);
-                    renderMap(selectedYear);
-                    });
-                </script>
-            </div>
+        
 
+        <div id="mappy" style =" top: -5%;">
+        </div>
+
+
+
+            
+        <div class="next-element">
+            <div class="separator">
+                <span>Income Group</span>
+            </div>
+            
             <div class="pure-g" > 
-                <div class="pure-u-1-3">
-                    <div class="chart-container" style =" top: 6%;">
-                        <div id="donut-chart"></div>
-                        <div class="centered-text" style =" top: 6%; left:-50%;">
-                            Income Group
-                        </div>
-                    </div>
+
                         <!-- Script for calling the function when the page loads and on dropdown change -->
                         <script>
                             // Initial rendering with the default year (2022)
                             window.onload = function() {
-                            renderDonutChart(2022);  // Render chart for the default year
-                            renderDonutChart_race(2022);
                             renderMap(2022);
                             };
             
                             // Listen for changes in the dropdown and re-render the chart
                             document.getElementById('yearSelect').addEventListener('change', function() {
                             const selectedYear = this.value;
-                            renderDonutChart(selectedYear);  // Re-render the chart based on the selected year
-                            renderDonutChart_race(selectedYear);
                             renderMap(selectedYear);
                             });
                         </script>
-    
-    
-                </div>
-                <div class="pure-u-1-3">
-                    <label for="yearSelect">Select Year: </label>
+
+                
+                <div class="pure-u-2-3">
+                    
+                    <p style="color: rgb(0, 0, 0);font-size: 12.5px;text-align: center;"><strong>Percentage Of Population By Income Group and Ethnicity</strong></p>
+                    <div id="alluvial" class="vis-container"></div>
+                    <div class="tooltip" id="tooltip"></div>
+                    <label for="yearSelect" >Select Year: </label>
                     <select id="yearSelect">
                         <option value="2022">2022</option>
                         <option value="2019">2019</option>
                         <option value="2016">2016</option>
                     </select>
-                    <div id="alluvial" class="vis-container"></div>
-                    <div class="tooltip" id="tooltip"></div>
                     <script src="sankey.js"></script>
                 </div>
     
                 <div class="pure-u-1-3">
-                    <div class="chart-container" style =" top: 6%; left: 19%;">
-                        <div id="donut-chart-race"></div>
-                        <div class="centered-text" style =" top: 2%; left:-50%;">
-                            Ethnicity
-                        </div>
-                        
-                    </div>
+                    <h2 style="font-size: 29.8px; margin-bottom: 5px; margin-top: 46px;"><span style="font-family: inherit; font-weight: inherit;"><strong style="color: #4c78a8;">B40</strong> Shrinks as Malaysians Rise</span></h2>
+                <h2 style="font-size: 22.4px;margin-top: 0;">Ethnic Groups Slowly Shift Away from <strong style="color: #4c78a8;">B40</strong></h2><br>
+                
+                <p style="color: rgb(94, 94, 94);font-size: 18.5px;text-align: left;">As Malaysia's economy grows, the <strong style="color: #4c78a8;">B40</strong> <strong>income group</strong> — once comprising 40% of households — is shrinking. This shift reflects significant efforts across <strong>ethnic groups</strong> to improve living standards and break free from <strong>poverty</strong>, marking a positive trend towards a more equitable future.
+                    <br><br>
+                    The demographic composition of Malaysia is predominantly <strong style="color: #f40abf;">Malay</strong>, accounting for more than half of the population. They are followed by the <strong style="color: #66c2fb;">Chinese</strong>, <strong style="color: #932cf3;">Indians</strong>, and <strong style="color: #0a2af4;">other</strong> <strong>ethnic groups</strong>. Notably, more than one-fourth of the Malaysian population are <strong style="color: #f40abf;">Malays</strong> within the <strong style="color: #e35454;">T20</strong> <strong>income group</strong>, highlighting the economic disparities that exist within the country.</p>
                 </div>
+
+                
                 
     
             </div>
+            
     
-            <script>
-                // Initial rendering with the default year (2022)
-                window.onload = function() {
-                renderDonutChart(2022);  // Render chart for the default year
-                renderDonutChart_race(2022);
-                renderMap(2022);
-                };
-    
-                // Listen for changes in the dropdown and re-render the chart
-                document.getElementById('yearSelect').addEventListener('change', function() {
-                const selectedYear = this.value;
-                renderDonutChart(selectedYear);  // Re-render the chart based on the selected year
-                renderDonutChart_race(selectedYear);
-                renderMap(selectedYear);
-                });
-            </script>
-    
-    
+        </div>
+
+                
+                    
+
 
             <div class="separator">
                 <span>Unemployment Rate</span>
@@ -252,40 +246,21 @@
             </div>
             <div class="pure-u-1-3">
               <div class="description description-right">
-                <h2 style="font-size: 30.4px; margin-bottom: 5px;"><span style="font-family: inherit; font-weight: inherit;">Unemployment Spike In 2020</span></h2>
-                <h2 style="font-size: 21.5px;margin-top: 0;">Gradual Recovery Follows in Recent Years</h2>
-                <p style="color: #494949;">Malaysia's unemployment rate surged in 2020 due to the COVID-19 pandemic but has steadily declined as the economy recovered. Despite the initial disruption, the labor market has shown resilience, with recent years marking a return toward pre-pandemic stability.
+                <h2 style="font-size: 32.8px; margin-bottom: 5px; margin-top: 0px;"><span style="font-family: inherit; font-weight: inherit;">Unemployment Spike In 2020</span></h2>
+                <h2 style="font-size: 22.4px;margin-top: 0;">Gradual Recovery Follows in Recent Years</h2>
+                <p style="color: rgb(94, 94, 94) ; font-size: 18.5px;"><br>Malaysia's <strong>unemployment rate</strong> surged in 2020 due to the COVID-19 pandemic but has steadily declined as the economy recovered. Despite the initial disruption, the labor market has shown resilience, with recent years marking a return toward pre-pandemic stability.
                     <br><br>
-                    <h2 style="font-size: 29.4px; margin-bottom: 5px;"><span style="font-family: inherit; font-weight: inherit;">East Malaysia Faces Job Strain</span></h2>
-                    <h2 style="font-size: 20.7px;margin-top: 0;">Sabah & Labuan Lag While Others Rebound</h2>
-                    Sabah and Labuan continue to face elevated unemployment rates, driven by limited economic diversification and reliance on industries vulnerable to global market shifts. <br><br> The disparity between these regions and more urbanized areas stems from slower infrastructure development and fewer economic opportunities. Addressing this requires targeted investments, policy reforms, and support for emerging sectors to boost job creation and close the employment gap.
-                    <br><br>
-                    Moreover, the regions' dependence on traditional industries such as oil and gas has limited the development of a more resilient and diversified economy. This dependence makes Sabah and Labuan particularly susceptible to external shocks, such as fluctuating commodity prices and global demand.
+                    <h2 style="font-size: 30.6px; margin-bottom: 5px;"><span style="font-family: inherit; font-weight: inherit;">East Malaysia Faces Job Strain</span></h2>
+                    <h2 style="font-size: 21.6px;margin-top: 0;"><strong style="color: #920000;">Sabah</strong> & <strong style="color: orange;">Labuan</strong> Lag While Others Rebound</h2>
+                    <p style="color: rgb(94, 94, 94); font-size: 18.5px;"><br>High <strong>unemployment rates</strong> continues to plague <strong style="color: #920000;">Sabah</strong> & <strong style="color: orange;">Labuan</strong>, driven by limited economic diversification & reliance on industries vulnerable to global market shifts. 
+                        <br><br> The disparity between these <strong>states</strong> & more urbanized areas stems from slower infrastructure development & fewer economic opportunities. Addressing this requires support for emerging sectors to boost job creation and close the employment gap.</p>
+                    
               </div>
             </div>
       
           </div>
         
-<!-- 
-        <br><br><br><br>
-        <div class="pure-g">
-            <div class="pure-u-2-3">
-              <div id="bubble" class="vis-container"></div>
-            </div>
-            <div class="pure-u-1-3">
-              <div class="description description-right">
-                <h2 style="font-size: 29.4px; margin-bottom: 5px;"><span style="color: #377eb8; font-family: inherit; font-weight: inherit;">Sabah's </span>Socio-economic Strain</h2>
-                <h2 style="font-size: 20.5px;margin-top: 0;">Leading in Both Poverty and Unemployment</h2>
-                <br>
-                <p style="color: #494949;"><strong style="color: #377eb8;">Sabah</strong> struggles with both high poverty and unemployment due to limited economic opportunities, especially in rural areas, compounded by infrastructure challenges. This has created a cycle where job shortages lead to increased poverty and social strain.
-                    <br><br>
-                    In <strong style="color: #377eb8;">W.P. Labuan</strong>, high unemployment persists, but poverty is more controlled, likely due to federal support and smaller population size, which helps buffer the economic impact despite limited job prospects.
-                    <br><br>
-                    Malaysia's economic center is located in the <strong style="color: #984ea3;">Central</strong> Region, therefore <strong style="color: #984ea3;">Selangor</strong>, <strong style="color: #984ea3;">W.P. Putrajaya</strong> &  <strong style="color: #984ea3;">W.P. Kuala Lumpur</strong> benefits from more diverse job opportunities, resulting in low poverty and moderate unemployment, though urban living costs can still strain some households financially.</p>
-              </div>
-            </div>
-      
-          </div> -->
+
 
 
           <div class="separator">
@@ -294,55 +269,61 @@
 
 
     
-    <br><br>
-    <div class="pure-g">
-        <div class="pure-u-2-3">
-          <div id="parallel" class="vis-container"></div>
-        </div>
-        <div class="pure-u-1-3">
-              <div class="description description-right">
-                <h2 style="font-size: 29.4px; margin-bottom: 5px;"><span style="color: #377eb8; font-family: inherit; font-weight: inherit;">Sabah's </span>Socio-economic Strain</h2>
-                <h2 style="font-size: 20.5px;margin-top: 0;">Leading in Both Poverty and Unemployment</h2>
-                <br>
-                <p style="color: #494949;"><strong style="color: #377eb8;">Sabah</strong> struggles with both high poverty and unemployment due to limited economic opportunities, especially in rural areas, compounded by infrastructure challenges. This has created a cycle where job shortages lead to increased poverty and social strain.
-                    <br><br>
-                    In <strong style="color: #377eb8;">W.P. Labuan</strong>, high unemployment persists, but poverty is more controlled, likely due to federal support and smaller population size, which helps buffer the economic impact despite limited job prospects.
-                    <br><br>
-                    Malaysia's economic center is located in the <strong style="color: #984ea3;">Central</strong> Region, therefore <strong style="color: #984ea3;">Selangor</strong>, <strong style="color: #984ea3;">W.P. Putrajaya</strong> &  <strong style="color: #984ea3;">W.P. Kuala Lumpur</strong> benefits from more diverse job opportunities, resulting in low poverty and moderate unemployment, though urban living costs can still strain some households financially.</p>
-              </div>
-            </div>
-        </div>
-  
-        
-        <div class="separator">
-            <span>Expenditure Group</span>
-        </div>
-
-
+        <br><br>
         <div class="pure-g">
             <div class="pure-u-2-3">
-                <div class="chart-container" style =" top: 6%; left: -27%;">
-                    <div id="bump" class="chart"></div>
-                    <div id="bar_expenditure" class="chart" style="position: absolute; left: 38px; top: 0;"></div>
-                  </div>
+                <div id="parallel" class="vis-container"></div>
+                <p style="color: rgb(94, 94, 94);font-size: 12.5px;">*Please note that the bars represent the overall country (Malaysia) average.</p>
+                
             </div>
-        </div>
+            <div class="pure-u-1-3">
+                <div class="description description-right">
+                    <h2 style="font-size: 28.0px; margin-bottom: 5px; margin-top: 0px;">Expenditure-Income Ratio Inflates</h2>
+                    <h2 style="font-size: 21.0px;margin-top: 0;"><span style="color: #004949; font-family: inherit; font-weight: inherit;">Kedah </span>Struggles With Savings & Low Income</h2>
+                    <p style="color: rgb(94, 94, 94);font-size: 18.5px;">
+                        <br>
+                        <strong style="color: #004949;">Kedah's </strong>financial challenges are highlighted by its high <strong>expenditure to income ratio</strong>, the highest among Malaysian states, indicating that residents are spending a large portion of their <strong>income</strong>, likely due to necessities outweighing financial resources. 
+                        <br><br>This is compounded by <strong style="color: #004949;">Kedah</strong> having the lowest <strong>median income</strong>, which correlates strongly with its high <strong>poverty rate</strong> — the second-highest in the country. 
+                        <br><br> Additionally, <strong style="color: #004949;">Kedah</strong> is among the top five states with the highest <strong>unemployment rates</strong>, reflecting a struggling job market. These economic indicators together paint a picture of a region where low <strong>income</strong>, high necessary spending, and significant job scarcity intensify financial insecurity.
+                </div>
+                </div>
+            </div>
+    
             
-        <div class="description" style="position: relative; top: -433px; left: 890px; z-index: 3;  padding: 10px; border-radius: 8px; width: 454px; height: 700px; overflow: auto; word-wrap: break-word;">
-            <h2 style="font-size: 30.4px; margin-bottom: 5px;">
-                Rising Costs & Jobless Rates Reshape Household Spending
-            </h2>
-            <h2 style="font-size: 20.8px; margin-top: 0;">Expenditure Shifts to Health as Costs Climb</h2>
-            <br>
-            <p style="color: #494949;">
-                Over the past decade, household spending priorities in Malaysia have evolved significantly in response to economic pressures. Essential categories such as Food & Beverages, Housing & Utilities, and Dining & Accommodation have remained top spending priorities, underscoring their non-negotiable nature in family budgets. Even as these categories hold their dominance, rising living costs and income pressures have forced households to make difficult choices about how to allocate their limited resources.
-                <br><br>
-                One noticeable trend is the increasing importance of Health services, particularly in the most recent years. As job markets have become more uncertain, families have redirected more of their budgets toward healthcare - a sector that have become critical in the post-pandemic era. 
-                <br><br>
-                In contrast, spending on non-essential categories such as Apparel, Leisure & Culture, and Alcohol & Tobacco has seen a steady decline. This shift reflects changing consumer behavior, as households cut back on discretionary spending to focus more on essentials. 
+            <div class="separator">
+                <span>Expenditure Group</span>
+            </div>
             
-            </p>
-        </div>
+
+
+                <div class="pure-g">
+                    <div class="pure-u-2-3">
+                        <div class="chart-container" style =" top: 6%; left: -27%;">
+                            <div id="bump" class="chart"></div>
+                            <div id="bar_expenditure" class="chart" style="position: absolute; left: 38px; top: 32px;"></div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <p style="color: rgb(94, 94, 94);font-size: 14.6px; position: relative; top: 140px;">Visualisation By: <strong style="color: #000000;">Yue Herng Tang</strong> | Date Of Completion: <strong style="color: #000000;">12/10/2024</strong><br>Sources: <strong style="color: #000000;">Ministry of Economy Malaysia (2022): https://tinyurl.com/mrx8mdeb</strong> | <strong style="color: #000000;">data.gov.my (2022): https://tinyurl.com/bdytcv2y</strong> | <strong style="color: #000000;">Department of Statistics Malaysia (2024): https://open.dosm.gov.my/</strong></p>
+                    
+                <div class="description" style="position: relative; top: -433px; left: 890px; z-index: 3;  padding: 10px; border-radius: 8px; width: 454px; height: 700px; overflow: auto; word-wrap: break-word;">
+                    <h2 style="font-size: 30.7px; margin-bottom: 5px; ; margin-top: 5px;">
+                        Rising Costs & Jobless Rates Reshape Household Spending:
+                    </h2>
+                    <h2 style="font-size: 21.7px; margin-top: 0;">Expenditure Shifts to Health as Costs Climb</h2>
+                    <p style="color: rgb(94, 94, 94); font-size: 18.5px;">
+                        <br>In Malaysia, economic pressures over the last decade have prioritized essential household expenditures like <strong style="color: #490092;">food</strong>, <strong style="color: #6db6ff;">housing and utilities</strong>, underlining their critical role in family budgets. 
+                        <br><br>
+                        Recent years have seen a notable shift towards increased spending on <strong style="color: #006edb;">health</strong>, driven by job market uncertainties and the pandemic's impact, highlighting <strong style="color: #006edb;">health</strong> as an increasingly critical component of personal expenditure.
+                        <br><br>
+                        Conversely, spending on non-essentials such as <strong style="color: #004949;">apparel</strong>, <strong style="color: #924900">leisure</strong>, and <strong style="color: #000000;">alcohol & tobacco</strong> has declined, indicating a consumer trend towards minimizing discretionary expenses in favor of necessities.
+                    
+                    </p>
+                </div>
+            
+
+
        
     </div>
 </body>

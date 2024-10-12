@@ -2,7 +2,7 @@
     "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
     "description": "Faceted Column Charts without Annotations, Labels, or Scales",
     "data": {
-      "url": "https://raw.githubusercontent.com/yueherngtang/fit3179w10hw/refs/heads/master/expenditure_group_percentage_expenditure.csv"
+      "url": "https://raw.githubusercontent.com/yueherngtang/fit3179a2/refs/heads/main/expenditure_group_percentage_expenditure.csv"
     },
     "background": "transparent",
      "transform": [
@@ -21,7 +21,7 @@
       }
     },
     "spec": {
-      "width":77,
+      "width":62,
       "height": 460,
       "layer": [
         {
@@ -41,7 +41,10 @@
             "color": {
               "field": "expenditure_group",
               "type": "nominal",
-              "legend": null  
+              "legend": null ,
+              "scale": {
+              "range": ["#000000", "#004949", "#009292", "#ff6db6", "#ffb6db", "#490092", "#006edb", "#b66dff", "#6db6ff","#924900", "#54fff9", "#db6d00", "#24ff24", "#ffff6d"]
+            }
             },
             "tooltip": [  
               {"field": "expenditure_group", "type": "nominal", "title": "Expenditure Type"},
