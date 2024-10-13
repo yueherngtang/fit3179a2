@@ -183,6 +183,26 @@
                     "latitude": { "field": "latitude", "type": "quantitative" },
                     "text": { "field": "text", "type": "nominal" }
                 }
+              },
+              {
+                "data": {
+                    "values": [
+                        { "text": "______________", "latitude": 6.4, "longitude": 112.4}
+                    ]
+                },
+                "mark": {
+                    "type": "text",
+                    "color": "black",
+                    "fontWeight": "bold",
+                    "fontSize": 28,
+                    "align": "center",
+                    "baseline": "middle"
+                },
+                "encoding": {
+                    "longitude": { "field": "longitude", "type": "quantitative" },
+                    "latitude": { "field": "latitude", "type": "quantitative" },
+                    "text": { "field": "text", "type": "nominal" }
+                }
               }
         ]
     }
