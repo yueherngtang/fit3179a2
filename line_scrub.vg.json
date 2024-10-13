@@ -66,16 +66,18 @@
               "encodings": ["color"]
             },
             "bind": "legend" 
-          }
-          
-        ],
+          }],
         "encoding": {
           "x": {
             "field": "year",
             "timeUnit": "year",
             "type": "temporal",
             "scale": {"domain": {"param": "time_brush"}},
-            "axis": {"title": "Year"}
+            "axis": {
+            "title": "Year",
+            "tickCount": {"interval": "year", "step": 1}, 
+            "tickMinStep": 1
+          }
           },
           "y": {
             "field": "unemployment_rate",
