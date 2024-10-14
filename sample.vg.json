@@ -188,15 +188,15 @@
                 "data": {
                     "values": [
                         { "text": "Since 2016, Sabah had the highest poverty rates", "latitude": 5.5, "longitude": 104.9}
-                       , { "text": "in Malaysia, mainly due to its inadequate infrastructures.", "latitude": 5.3, "longitude": 104.9}
-                       , { "text": "These issues significantly hindered economic growth", "latitude": 5.1, "longitude": 104.9}
-                       , { "text": "and job creation, perpetuating high poverty rates", "latitude": 4.9, "longitude": 104.9}
-                       , { "text": "across the state.", "latitude": 4.7, "longitude": 104.9}
+                       , { "text": " in Malaysia, mainly due to its inadequate infrastructures.", "latitude": 5.3, "longitude": 104.9}
+                       , { "text": "These issues significantly hindered economic growth", "latitude": 5.1, "longitude": 104.87}
+                       , { "text": "and job creation, perpetuating high poverty rates", "latitude": 4.9, "longitude": 104.87}
+                       , { "text": "across the state.", "latitude": 4.7, "longitude": 104.87}
                     ]
                 },
                 "mark": {
                     "type": "text",
-                    "color": "grey",
+                    "color": "#525251",
                     "fontSize": 18,
                     "align": "left",
                     "baseline": "middle"
