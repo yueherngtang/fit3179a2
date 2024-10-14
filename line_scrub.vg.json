@@ -34,8 +34,8 @@
               },
               "color": { "value": "blue" },
               "tooltip": [
-                { "field": "year", "type": "temporal", "title": "Year:" , "timeUnit": "year"},
-                { "field": "unemployment_rate_percentage", "type": "nominal", "title": "Unemployment Rate:" }
+                { "field": "year", "type": "temporal", "title": "Year" , "timeUnit": "year"},
+                { "field": "unemployment_rate_percentage", "type": "nominal", "title": "Unemployment Rate" }
               ]
             },
             "params": [
@@ -117,7 +117,7 @@
               "y": {
                 "field": "unemployment_rate",
                 "type": "quantitative",
-                "axis": { "title": "Unemployment Rate" }
+                "axis": { "title": "Unemployment Rate (%)" }
               },
               "color": {
                 "condition": {
@@ -136,9 +136,9 @@
                 "value": "lightgray"
               },
               "tooltip": [
-                { "field": "year", "type": "temporal", "title": "Year:", "timeUnit": "year" },
-                { "field": "state", "type": "nominal", "title": "State:" },
-                { "field": "unemployment_rate_percentage", "type": "nominal", "title": "Unemployment Rate:" }
+                { "field": "year", "type": "temporal", "title": "Year", "timeUnit": "year" },
+                { "field": "state", "type": "nominal", "title": "State" },
+                { "field": "unemployment_rate_percentage", "type": "nominal", "title": "Unemployment Rate" }
               ]
             },
             "transform": [

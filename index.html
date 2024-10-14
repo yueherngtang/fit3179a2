@@ -25,15 +25,12 @@
     <script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
 
     <script src="vega_lite_vis.js"></script>
-    <script src="donut_income_group.js"></script>
-    <script src="donut_race.js"></script>
-
     <style>
         body *{
         font-family: 'Open Sans', sans-serif;
     }
 
-        /* Customize the font for the h1 */
+
         h1 {
             font-family: "Georgia", serif;
             font-size: 49px;
@@ -42,7 +39,7 @@
             text-align: center;
         }
 
-        /* Customize the font for the h2 */
+
         h2 {
             font-family: "Ebony Light", sans-serif;
             font-size: 22px;
@@ -59,27 +56,27 @@
         }
 
         .dashboard-container {
-            width: 1366px; /* Set a fixed width for the dashboard */
-            padding: 40px; /* Optional padding inside the container */
+            width: 1366px; 
+            padding: 40px; 
             height: 3750px;
             margin: auto;
-            background-color: rgb(241, 241, 241); /* Optional: Add background color to the container */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for effect */
+            background-color: rgb(241, 241, 241); 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
         }
 
         .separator {
-            width: 100%; /* Full width of the dashboard container */
-            background-color: #dd3711; /* Grey background color */
-            text-align: center; /* Center the text */
-            padding: 10px 0; /* Padding to give the bar height */
-            margin: 20px 0; /* Margin to add space around the bar */
-            box-sizing: border-box; /* Make sure padding is included in the width */
+            width: 100%; 
+            background-color: #dd3711; 
+            text-align: center;
+            padding: 10px 0; 
+            margin: 20px 0; 
+            box-sizing: border-box; 
         }
 
         .separator span {
             font-size: 18px;
             font-weight: bold;
-            color: #efefef; /* Text color */
+            color: #efefef; 
         }
 
         .tooltip {
@@ -102,7 +99,7 @@
 
         .description h2,
   .description p {
-      text-align: justify; /* Justify the text */
+      text-align: justify; 
   }
 
   .centered-text {
@@ -133,17 +130,17 @@
 
     #floatingTextBox {
     position: relative;
-    top: 150px;       /* Adjust these values as needed */
-    left: 484px;      /* Adjust these values as needed */
-    width: 380px;    /* Set the width of the text box */
-    z-index: 10;     /* Ensure it floats above other content */
-    text-align: justify; /* This will justify the text inside the box */
+    top: 150px;      
+    left: 484px;      
+    width: 380px;    
+    z-index: 10;   
+    text-align: justify; 
     font-size: 17.5px;
     color: rgb(94, 94, 94);
 }
 
 .next-element {
-    margin-top: -150px;  /* Adjust based on the height of #floatingTextBox */
+    margin-top: -150px;  
 }
 
 
@@ -182,14 +179,13 @@
             
             <div class="pure-g" > 
 
-                        <!-- Script for calling the function when the page loads and on dropdown change -->
+                       
                         <script>
-                            // Initial rendering with the default year (2022)
+                            
                             window.onload = function() {
                             renderMap(2022);
                             };
             
-                            // Listen for changes in the dropdown and re-render the chart
                             document.getElementById('yearSelect').addEventListener('change', function() {
                             const selectedYear = this.value;
                             renderMap(selectedYear);
@@ -215,7 +211,7 @@
                     <h2 style="font-size: 29.8px; margin-bottom: 5px; margin-top: 46px;"><span style="font-family: inherit; font-weight: inherit;"><span style="color: #4c78a8; font-family: inherit;">B40</span> Shrinks as Malaysians Rise</span></h2>
                 <h2 style="font-size: 22.4px;margin-top: 0;">Ethnic Groups Slowly Shift Away from <span style="font-family: inherit; font-weight: inherit;color: #4c78a8;">B40</strong></h2><br>
                 
-                <p style="color: rgb(94, 94, 94);font-size: 18.5px;text-align: left;">As Malaysia's economy grows, the <span style="color: #4c78a8;">B40</span> <strong>income group</strong> — once comprising 40% of households — is shrinking. This shift reflects significant efforts across <strong>ethnic groups</strong> to improve living standards and break free from <strong>poverty</strong>, marking a positive trend towards a more equitable future.
+                <p style="color: rgb(94, 94, 94);font-size: 18.5px;text-align: left;">As Malaysia's economy grows, the <strong style="color: #4c78a8;">B40</strong> <strong>income group</strong> — once comprising 40% of households — is shrinking. This shift reflects significant efforts across <strong>ethnic groups</strong> to improve living standards and break free from <strong>poverty</strong>, marking a positive trend towards a more equitable future.
                     <br><br>
                     The demographic composition of Malaysia is predominantly <strong style="color: #f40abf;">Malay</strong>, accounting for more than half of the population. They are followed by the <strong style="color: #66c2fb;">Chinese</strong>, <strong style="color: #932cf3;">Indians</strong>, and <strong style="color: #0a2af4;">other</strong> <strong>ethnic groups</strong>. Notably, more than one-fourth of the Malaysian population are <strong style="color: #f40abf;">Malays</strong> within the <strong style="color: #e35454;">T20</strong> <strong>income group</strong>, highlighting the economic disparities that exist within the country.</p>
                 </div>
